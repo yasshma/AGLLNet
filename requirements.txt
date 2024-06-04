@@ -1,4 +1,4 @@
-tensorflow
-keras
+tensorflow==1.6.0
+keras==2.2.0
 opencv-python
 tqdm
