@@ -53,8 +53,8 @@ def run(input_path, output_path, label_path):
 
         cv2.imwrite(filename + '.png', (enhance_B * 255.).astype(np.uint8))
 
-        label = cv2.imread(label_path)
-        result = cv2.imread(filename + '.png')
+        label = np.asarray(label_path)
+        result = np.asarray(filename + '.png')
         psnr = -10*np.log10(np.mean((label-result)**2))
         print("\n PSNR metric =", psnr)
         if psnr > 45:
