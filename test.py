@@ -57,14 +57,15 @@ def run(input_path, output_path, label_path):
         label = cv2.imread(label_path)
         result = cv2.imread(filename + '.png')
        
-        def psnr(img1, img2):
-            mse = np.mean(np.square(np.subtract(img1.astype(np.int16), img2.astype(np.int16))))
+        def compute_psnr(img1, img2):
+            img1 = img1.astype(np.float64) / 255.
+            img2 = img2.astype(np.float64) / 255.
+            mse = np.mean((img1 - img2) ** 2)
             if mse == 0:
-                return np.Inf
-            PIXEL_MAX = 255.0
-            return 20 * math.log10(PIXEL_MAX) - 10 * math.log10(mse)  
+                return "Same Image"
+            return 10 * math.log10(1. / mse)
 
-        metric = psnr(result, label)
+        metric = compute_psnr(result, label)
 
         print("\n PSNR metric =", metric)
         if metric > 45:
