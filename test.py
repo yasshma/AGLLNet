@@ -67,7 +67,7 @@ def run(input_path, output_path, label_path):
 
         metric = compute_psnr(result, label)
 
-        print("\n PSNR metric =", metric)
+        print("\n PSNR metric result: ", metric)
         if isinstance(metric, str):
             print("\n TEST PASSED! \n")
         elif metric > 45:
