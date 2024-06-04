@@ -6,14 +6,7 @@ Original repository: https://github.com/yu-li/AGLLNet
 
 ## Description
 
-The authors of the paper present a deep learning based method for low-light image enhancement. This
-problem is challenging due to the difficulty in handling various factors simultaneously
-including brightness, contrast, artifacts and noise. To address this task, we propose the
-multi-branch low-light enhancement network (MBLLEN). The key idea is to extract rich
-features up to different levels, so that we can apply enhancement via multiple subnets
-and finally produce the output image via multi-branch fusion. In this manner, image
-quality is improved from different aspects. Through extensive experiments, our proposed
-MBLLEN is found to outperform the state-of-art techniques by a large margin. We additionally show that our method can be directly extended to handle low-light videos.
+Low-light image enhancement is challenging in that it needs to consider not only brightness recovery but also complex issues like color distortion and noise, which usually hide in the dark. Simply adjusting the brightness of a low-light image will inevitably amplify those artifacts. To address this difficult problem, this paper proposes a novel end-to-end attention-guided method based on multi-branch convolutional neural network. To this end, we first construct a synthetic dataset with carefully designed low-light simulation strategies. The dataset is much larger and more diverse than existing ones. With the new dataset for training, our method learns two attention maps to guide the brightness enhancement and denoising tasks respectively. The first attention map distinguishes underexposed regions from well lit regions, and the second attention map distinguishes noises from real textures. With their guidance, the proposed multi-branch decomposition-and-fusion enhancement network works in an input adaptive way. Moreover, a reinforcement-net further enhances color and contrast of the output image. Extensive experiments on multiple datasets demonstrate that our method can produce high fidelity enhancement results for low-light images and outperforms the current state-of-the-art methods by a large margin both quantitatively and visually.
 
 ## Instructions:
 1. Clone repository:
