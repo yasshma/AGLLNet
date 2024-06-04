@@ -7,7 +7,7 @@ from keras.models import load_model
 from tqdm import tqdm
 
 
-def run(input_path, output_path):
+def run(input_path, output_path, label_path):
     """Run AGLLNet to enhance the low light image.
     Args:
         input_path (str): path to input folder
@@ -53,12 +53,22 @@ def run(input_path, output_path):
 
         cv2.imwrite(filename + '.png', (enhance_B * 255.).astype(np.uint8))
 
+        label = cv2.imread(label_path)
+        result = cv2.imread(filename + '.png')
+        psnr = -10*np.log10(np.mean((label-result)**2))
+        print(f"\n PSNR metric = {psnr} \n")
+        if psnr > 45:
+            print("\n TEST PASSED! \n")
+        else:
+            print("\n TEST NOT PASSED! \n")
+
 
 if __name__ == "__main__":
 
     # set paths
     INPUT_PATH = "input"
     OUTPUT_PATH = "output"
+    LABEL_PATH = "label.png"
 
     # compute results
-    run(INPUT_PATH, OUTPUT_PATH)
+    run(INPUT_PATH, OUTPUT_PATH, LABEL_PATH)
