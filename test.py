@@ -1,6 +1,5 @@
 import os
 import numpy as np
-import imageio
 import cv2
 import math
 from glob import glob
@@ -26,7 +25,7 @@ def run(input_path, output_path):
 
         # data load
         img_A_path = path[i]
-        img_A = imageio.imread(img_A_path) / 255.
+        img_A = cv2.imread(img_A_path) / 255.
 
         if len(img_A.shape) < 3:
             img_A = img_A[:, :, np.newaxis]
@@ -52,7 +51,7 @@ def run(input_path, output_path):
             output_path,
             os.path.splitext(os.path.basename(img_A_path))[0])
 
-        imageio.imwrite(filename + '.png', (enhance_B * 255.).astype(np.uint8))
+        cv2.imwrite(filename + '.png', (enhance_B * 255.).astype(np.uint8))
 
 
 if __name__ == "__main__":
